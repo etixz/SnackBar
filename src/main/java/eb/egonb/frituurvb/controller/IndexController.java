@@ -34,12 +34,11 @@ public class IndexController {
     }
 
     @RequestMapping(value = {"", "/", "/index"}, method = RequestMethod.POST)
-    public String saveSnack(@Valid Snack snack, BindingResult bindingResult){
+    public String saveSnack(@ModelAttribute("nSnack") @Valid Snack nSnack, BindingResult bindingResult){
         if(bindingResult.hasErrors()) {
             return "index";
         }
-        dao.save(snack);
+        dao.save(nSnack);
         return "redirect:/index";
     }
-
 }
